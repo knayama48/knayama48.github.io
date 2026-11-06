@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nayama Kongamnuaysuk</title>
+<meta name="description" content="Nayama Kongamnuaysuk – MSc People Analytics and Human-Centric Management student at UCL.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FBF7F1;
+    --fg: #2A2621;
+    --hero: #EFE3D3;
+    --heading: #1F3D3A;
+    --muted: #5F5A52;
+    --card: #FFFFFF;
+    --band: #E4EEEA;
+    --line: #E6DCCD;
+    --soft: #E7DACA;
+    --terra-text: #A6461F;
+    --teal: #1F4E4A;
+    --terra: #A6461F;
+    --mustard: #E3A92B;
+    --mustard-text: #C48A12;
+  }
+  [data-theme="dark"] {
+    --bg: #13201F;
+    --fg: #E9E2D6;
+    --hero: #182A28;
+    --heading: #FFFFFF;
+    --muted: #B5C4BF;
+    --card: #1D3331;
+    --band: #182A28;
+    --line: #2C4744;
+    --soft: #22403D;
+    --terra-text: #F0936B;
+    --mustard-text: #E3A92B;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--fg);
+    background: var(--bg);
+    transition: background 0.3s, color 0.3s;
+  }
+  a { color: var(--terra-text); }
+  a:hover { color: var(--teal); }
+  [data-theme="dark"] a:hover { color: #FFFFFF; }
+  h1, h2 { font-family: "DM Serif Display", Georgia, serif; font-weight: 400; color: var(--heading); }
+  h3 { color: var(--heading); }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  section { padding: 80px 24px; scroll-margin-top: 64px; }
+  .section-title { margin: 0 0 36px; font-size: 40px; line-height: 1.15; }
+  button { font-family: inherit; }
+  :focus-visible { outline: 3px solid var(--mustard); outline-offset: 3px; }
+
+  .placeholder {
+    display: inline-block;
+    background: #FBEADF; border: 1px dashed var(--terra); color: #7E3315;
+    padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 15px;
+  }
+
+  /* Navigation */
+  nav {
+    position: sticky; top: 0; z-index: 20;
+    background: var(--teal); padding: 0 24px;
+  }
+  .nav-inner {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 8px 24px; padding: 12px 0;
+  }
+  .logo { font-family: "DM Serif Display", serif; font-size: 22px; color: #FFFFFF; text-decoration: none; }
+  .logo span { color: var(--mustard); }
+  .nav-links { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 22px; }
+  .nav-links a { color: #D8E6E2; text-decoration: none; font-size: 15px; font-weight: 500; }
+  .nav-links a:hover { color: #FFFFFF; }
+  .theme-btn {
+    min-height: 40px; display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px; border-radius: 999px; border: 1.5px solid #4F807A;
+    background: transparent; color: #FFFFFF; font-size: 14px; font-weight: 700; cursor: pointer;
+  }
+  .theme-btn:hover { background: rgba(255,255,255,0.08); }
+
+  /* Header */
+  header { background: var(--hero); padding: 72px 24px 88px; transition: background 0.3s; }
+  .hero { display: flex; flex-wrap: wrap-reverse; align-items: center; gap: 48px; }
+  .hero-text { flex: 999 1 480px; min-width: 0; }
+  .eyebrow { margin: 0 0 16px; color: var(--terra-text); font-size: 14px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+  .hero h1 { margin: 0 0 20px; font-size: 64px; line-height: 1.04; }
+  .hero-lead { margin: 0 0 32px; font-size: 20px; color: var(--muted); max-width: 560px; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-block; text-decoration: none; font-weight: 700;
+    padding: 14px 26px; border-radius: 999px;
+  }
+  .btn-primary { background: var(--terra); color: #FFFFFF; }
+  .btn-primary:hover { background: #8C3A19; color: #FFFFFF; }
+  .btn-outline { border: 2px solid var(--heading); color: var(--heading); padding: 12px 24px; }
+  .btn-outline:hover { background: var(--heading); color: var(--bg); }
+  .photo-wrap { flex: 1 1 260px; display: flex; justify-content: center; position: relative; }
+  .sun { position: absolute; width: 120px; height: 120px; border-radius: 50%; background: var(--mustard); top: -18px; right: 8%; }
+  .photo {
+    position: relative; width: 280px; height: 340px; object-fit: cover;
+    border-radius: 160px 160px 16px 16px; border: 4px solid var(--teal);
+    background: var(--soft); display: block;
+  }
+
+  /* About */
+  .about { display: flex; flex-wrap: wrap; gap: 24px 64px; }
+  .about h2 { flex: 1 1 220px; margin: 0; font-size: 40px; }
+  .about-body { flex: 999 1 520px; min-width: 0; }
+  .about-body p { margin: 0 0 16px; font-size: 19px; }
+
+  /* Ask me */
+  #ask { background: var(--band); transition: background 0.3s; }
+  .ask-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 28px; }
+  .ask-head h2 { margin: 0 0 4px; font-size: 40px; }
+  .ask-head p { margin: 0; color: var(--muted); }
+  .pill-btn {
+    min-height: 44px; padding: 10px 20px; border-radius: 999px;
+    border: 2px solid var(--teal); background: var(--card); color: var(--heading);
+    font-weight: 700; font-size: 15px; cursor: pointer;
+  }
+  .pill-btn:hover { background: var(--teal); color: #FFFFFF; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; }
+  .qcard {
+    text-align: left; min-height: 210px; padding: 22px; border-radius: 18px; cursor: pointer;
+    display: flex; flex-direction: column; justify-content: space-between; gap: 14px;
+    border: 2px solid var(--line); background: var(--card); color: var(--fg);
+    transition: background 0.25s, border-color 0.25s, transform 0.15s;
+  }
+  .qcard:hover { transform: translateY(-3px); border-color: var(--teal); }
+  .qcard .num { font-family: "DM Serif Display", serif; font-size: 40px; line-height: 1; }
+  .qcard .q { font-size: 21px; font-weight: 700; line-height: 1.25; }
+  .qcard .back { display: none; flex-direction: column; gap: 8px; }
+  .qcard .back-label { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mustard); }
+  .qcard .back-text { font-size: 16px; line-height: 1.5; }
+  .qcard .hint { display: none; font-size: 13px; font-weight: 700; color: #BFD6D1; }
+  .qcard[aria-pressed="true"] { background: var(--teal); border-color: var(--teal); color: #FFFFFF; }
+  .qcard[aria-pressed="true"] .num,
+  .qcard[aria-pressed="true"] .q { display: none; }
+  .qcard[aria-pressed="true"] .back { display: flex; }
+  .qcard[aria-pressed="true"] .hint { display: block; }
+  .n1 { color: var(--terra-text); } .n2 { color: var(--heading); } .n3 { color: var(--mustard-text); }
+
+  /* Education */
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .edu { background: var(--card); padding: 28px; border-radius: 16px; border-top: 5px solid var(--teal); }
+  .edu.t2 { border-top-color: var(--terra); }
+  .edu.t3 { border-top-color: var(--mustard); }
+  .meta { margin: 0 0 4px; font-size: 14px; color: var(--muted); }
+  .edu h3 { margin: 0 0 8px; font-size: 20px; }
+  .edu p { margin: 0 0 8px; font-size: 16px; }
+  .edu ul { margin: 0; padding-left: 20px; font-size: 16px; }
+
+  /* Projects slider */
+  #projects { padding-top: 0; }
+  .slider-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+  .slider-head h2 { margin: 0; font-size: 40px; }
+  .slider-ctrl { display: flex; align-items: center; gap: 10px; }
+  .slider-ctrl .pos { font-size: 15px; font-weight: 700; color: var(--muted); min-width: 44px; text-align: right; }
+  .arrow {
+    width: 44px; height: 44px; border-radius: 50%; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .arrow.prev { border: 1.5px solid var(--line); background: var(--card); color: var(--fg); }
+  .arrow.next { border: none; background: var(--terra); color: #FFFFFF; }
+  .slide {
+    background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 36px;
+    min-height: 240px; display: flex; flex-wrap: wrap; gap: 24px 40px;
+  }
+  .slide[hidden] { display: none; }
+  .slide-num { flex: 1 1 200px; }
+  .slide-num .big { margin: 0 0 8px; font-family: "DM Serif Display", serif; font-size: 64px; line-height: 1; color: var(--terra-text); }
+  .slide-num .meta { font-weight: 700; font-size: 15px; }
+  .slide-body { flex: 999 1 480px; min-width: 0; }
+  .slide-body h3 { margin: 0 0 10px; font-size: 25px; }
+  .slide-body ul { margin: 0; padding-left: 20px; }
+  .slide-body li { margin-bottom: 6px; }
+  .dots { display: flex; gap: 4px; margin-top: 12px; justify-content: center; }
+  .dot { width: 44px; height: 44px; border: none; background: transparent; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; padding: 0; }
+  .dot span { display: block; height: 8px; width: 8px; border-radius: 999px; background: var(--line); transition: width 0.25s, background 0.25s; }
+  .dot[aria-current="true"] span { width: 28px; background: var(--terra); }
+
+  /* Experience */
+  #experience { background: var(--teal); color: #E4EFEC; }
+  #experience h2 { color: #FFFFFF; }
+  .exp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 36px 32px; }
+  .exp .when { margin: 0 0 4px; font-size: 14px; color: var(--mustard); font-weight: 700; }
+  .exp h3 { margin: 0 0 6px; font-size: 19px; color: #FFFFFF; line-height: 1.35; }
+  .exp ul { margin: 0; padding-left: 20px; font-size: 16px; color: #BFD6D1; }
+  .exp li { margin-bottom: 4px; }
+
+  /* Skills */
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+  .skill { background: var(--card); border-radius: 16px; padding: 28px; border: 1px solid var(--line); }
+  .skill h3 { margin: 0 0 12px; font-size: 20px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+  .tags li { background: var(--band); color: var(--heading); font-size: 15px; font-weight: 700; padding: 6px 14px; border-radius: 999px; }
+  .skill p { margin: 0 0 8px; font-size: 16px; }
+
+  /* Chart */
+  #chart { padding-top: 0; }
+  .chart {
+    display: block; width: 100%; height: auto; min-height: 160px;
+    border-radius: 16px; background: var(--card); border: 1px solid var(--line);
+  }
+  figure { margin: 0; }
+  figcaption { margin-top: 12px; }
+
+  /* Contact */
+  #contact { background: var(--terra); color: #FFFFFF; }
+  .contact { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
+  .contact h2 { margin: 0; font-size: 48px; color: #FFFFFF; }
+  .contact-links { display: flex; flex-direction: column; gap: 8px; font-size: 17px; }
+  .contact-links a { color: #FFFFFF; font-weight: 700; }
+  .contact-links a:hover { color: #FFE3B3; }
+  #contact .placeholder { background: #FFF3EC; }
+
+  footer { background: var(--teal); color: #BFD6D1; text-align: center; padding: 20px 24px; font-size: 14px; }
+
+  @media (max-width: 640px) {
+    section { padding: 56px 16px; }
+    header { padding: 48px 16px 64px; }
+    nav { padding: 0 16px; }
+    .hero h1 { font-size: 44px; }
+    .section-title, .about h2, .ask-head h2, .slider-head h2 { font-size: 32px; }
+    .contact h2 { font-size: 38px; }
+    .photo { width: 220px; height: 270px; }
+    .sun { width: 90px; height: 90px; }
+    .slide { padding: 24px; }
+    .nav-links a { font-size: 14px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav aria-label="Main">
+  <div class="wrap nav-inner">
+    <a class="logo" href="#top">Nayama K<span>.</span></a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#ask">Ask me</a>
+      <a href="#education">Education</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+      <button type="button" class="theme-btn" id="themeBtn" aria-pressed="false">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg>
+        <span id="themeLabel">Dark</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="wrap hero">
+    <div class="hero-text">
+      <p class="eyebrow">People Analytics · UCL</p>
+      <h1>Nayama Kongamnuaysuk</h1>
+      <p class="hero-lead">MSc People Analytics and Human-Centric Management student at UCL, turning data into practical recommendations.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="mailto:nayamak05@gmail.com">Email me</a>
+        <a class="btn btn-outline" href="#ask">Ask me a question</a>
+      </div>
+    </div>
+    <div class="photo-wrap">
+      <div class="sun" aria-hidden="true"></div>
+      <img class="photo" src="profile.jpg" alt="Photo of Nayama Kongamnuaysuk">
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section id="about">
+    <div class="wrap about">
+      <h2>About</h2>
+      <div class="about-body">
+        <p>MSc People Analytics and Human-Centric Management student at UCL with a 2:1 in Marketing and Management from Newcastle. Experienced in live client consulting, market research and turning data into practical recommendations. Motivated by how reward, career and workforce decisions shape engagement and retention.</p>
+        <span class="placeholder">[PLACEHOLDER: bio from bio.txt]</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="ask">
+    <div class="wrap">
+      <div class="ask-head">
+        <div>
+          <h2>Ask me anything</h2>
+          <p>Tap a question to flip it. <span id="askProgress" aria-live="polite">0 of 8 revealed.</span></p>
+        </div>
+        <button type="button" class="pill-btn" id="revealAll">Reveal all answers</button>
+      </div>
+      <div class="cards" id="cards">
+        <button type="button" class="qcard" aria-pressed="false">
+          <span class="num n1">01</span><span class="q">What drives you?</span>
+          <span class="back"><span class="back-label">What drives you?</span><span class="back-text">How reward, career and workforce decisions shape engagement and retention.</span></span>
+          <span class="hint">Tap to flip back</span>
+        </button>
+        <button type="button" class="qcard" aria-pressed="false">
+          <span class="num n2">02</span><span class="q">Worked with real clients?</span>
+          <span class="back"><span class="back-label">Worked with real clients?</span><span class="back-text">Yes: advised Metivo’s CHRO (BASF Group), ran a six-month engagement for DoDays, and built a plan for Beth’s Cat Rescue.</span></span>
+          <span class="hint">Tap to flip back</span>
+        </button>
+        <button type="button" class="qcard" aria-pressed="false">
+          <span class="num n3">03</span><span class="q">Good with numbers?</span>
+          <span class="back"><span class="back-label">Good with numbers?</span><span class="back-text">First-Class Marks in Quantitative Methods at Newcastle, alongside a 2:1 in Marketing and Management.</span></span>
+          <span class="hint">Tap to flip back</span>
+        </button>
+        <button type="button" class="qcard" aria-pressed="false">
+          <span class="num n1">04</span><span class="q">What’s in your toolkit?</span>
+          <span class="back"><span class="back-label">What’s in your toolkit?</span><span class="back-text">Excel, PowerPoint, Word, Python, SPSS, Tableau, Qualtrics, plus AI tools for research and analysis.</span></span>
+          <span class="hint">Tap to flip back</span>
+        </button>
+        <button type="button" class="qcard" aria-pressed="false">
+          <span class="num n2">05</span><span class="q">Ever run a business?</span>
+          <span class="back"><span class="back-label">Ever run a business?</span><span class="back-text">Co-founded Sugar Sugar Bakery in Bangkok as Marketing Director, made the products, and donated part of the profits to charity.</span></span>
+          <span class="hint">Tap to flip back</span>
+        </button>
+        <button type="button" class="qcard" aria-pressed="false">
+          <span class="num n3">06</span><span class="q">How do you look after people?</span>
+          <span class="back"><span class="back-label">How do you look after people?</span><span class="back-text">Introduced an anonymous feedback system as Lacrosse Welfare Officer; Deputy Head Girl (Inclusion) at school.</span></span>
+          <span class="hint">Tap to flip back</span>
+        </button>
+        <button type="button" class="qcard" aria-pressed="false">
+          <span class="num n1">07</span><span class="q">Worked in industry?</span>
+          <span class="back"><span class="back-label">Worked in industry?</span><span class="back-text">Interned at PTT Oil and Retail Business, Thailand’s largest fuel supplier, in Aviation and Marine Marketing Development.</span></span>
+          <span class="hint">Tap to flip back</span>
+        </button>
+        <button type="button" class="qcard" aria-pressed="false">
+          <span class="num n2">08</span><span class="q">Life outside study?</span>
+          <span class="back"><span class="back-label">Life outside study?</span><span class="back-text">BUCS Lacrosse and Netball, and 10+ years of competitive dressage, finalist in Thailand Pony Dressage Championship 2018.</span></span>
+          <span class="hint">Tap to flip back</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="wrap">
+      <h2 class="section-title">Education</h2>
+      <div class="grid-3">
+        <div class="edu">
+          <p class="meta">September 2026 – In progress · London</p>
+          <h3>University College London (UCL)</h3>
+          <p>MSc People Analytics and Human-Centric Management.</p>
+          <p>Modules include People Analytics, Strategic HRM, Sustainable Work Design, Data Visualisation and Managing Diversity.</p>
+        </div>
+        <div class="edu t2">
+          <p class="meta">September 2023 – June 2026 · Newcastle upon Tyne</p>
+          <h3>Newcastle University</h3>
+          <p>BSc (Hons) Marketing and Management, 2:1.</p>
+          <ul>
+            <li>First-Class Marks in Quantitative Methods.</li>
+            <li>Six-month live client consultancy project (see <a href="#projects">Projects</a>).</li>
+          </ul>
+        </div>
+        <div class="edu t3">
+          <p class="meta">September 2018 – July 2023 · York</p>
+          <h3>Queen Margaret’s School</h3>
+          <p>A-Levels and GCSEs.</p>
+          <ul>
+            <li>Deputy Head Girl (Inclusion): chaired School Council meetings and represented students at EDI meetings with school governors.</li>
+            <li>All-Rounder Sports Scholarship (2021–2023); 1st Team Netball Captain.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="slider-head">
+        <h2>Consulting Projects</h2>
+        <div class="slider-ctrl">
+          <span class="pos" id="slidePos" aria-live="polite">1 / 4</span>
+          <button type="button" class="arrow prev" id="prevBtn" aria-label="Previous project">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+          </button>
+          <button type="button" class="arrow next" id="nextBtn" aria-label="Next project">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="slides">
+        <article class="slide">
+          <div class="slide-num"><p class="big">01</p><p class="meta">CHRO Advisory Case · October 2026</p></div>
+          <div class="slide-body">
+            <h3>Metivo (part of BASF Group) HR Hackathon</h3>
+            <ul>
+              <li>In a team of six, advised Metivo’s CHRO and Global Talent Management Specialist on a future HR operating model, local–global structure, roles and skills.</li>
+              <li>Evaluated where AI could automate, assist or should stay human-led, and planned a people-centred transition for remaining staff rather than cutting cost or headcount.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="slide" hidden>
+          <div class="slide-num"><p class="big">02</p><p class="meta">Live Client Marketing Consultancy · Newcastle University · 2026</p></div>
+          <div class="slide-body">
+            <h3>DoDays (children’s activities booking platform)</h3>
+            <ul>
+              <li>Six-month team engagement with a live client: ran market research and a full customer analysis.</li>
+              <li>Delivered evidence-based recommendations on digital marketing, website optimisation, brand awareness and customer acquisition.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="slide" hidden>
+          <div class="slide-num"><p class="big">03</p><p class="meta">Marketing Communications Plan · 2025</p></div>
+          <div class="slide-body">
+            <h3>Beth’s Cat Rescue</h3>
+            <ul>
+              <li>Built a SOSTAC plan with a team to grow social engagement, volunteers, partnerships and fundraising for a charity client.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="slide" hidden>
+          <div class="slide-num"><p class="big">04</p><p class="meta">Participant · 2025</p></div>
+          <div class="slide-body">
+            <h3>L’Oréal Brandstorm UK</h3>
+            <ul>
+              <li>Researched and developed an original product concept; pitched it to judges in a three-minute presentation.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <div class="dots" id="dots">
+        <button type="button" class="dot" aria-label="Show project 1" aria-current="true"><span></span></button>
+        <button type="button" class="dot" aria-label="Show project 2" aria-current="false"><span></span></button>
+        <button type="button" class="dot" aria-label="Show project 3" aria-current="false"><span></span></button>
+        <button type="button" class="dot" aria-label="Show project 4" aria-current="false"><span></span></button>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <h2 class="section-title">Experience</h2>
+      <div class="exp-grid">
+        <div class="exp">
+          <p class="when">June 2025 – August 2025 · Bangkok</p>
+          <h3>PTT Oil and Retail Business Public Company Limited · Aviation and Marine Marketing Development Intern</h3>
+          <ul>
+            <li>Worked alongside the team at Thailand’s largest fuel supplier, shadowing sales, meeting clients and joining site visits.</li>
+            <li>Researched operational processes and presented recommendations to improve operational efficiency to the department.</li>
+            <li>Conducted market research to support a proposed new natural gas energy plan.</li>
+          </ul>
+        </div>
+        <div class="exp">
+          <p class="when">September 2025 – June 2026 · Newcastle upon Tyne</p>
+          <h3>Newcastle University Women’s Lacrosse Club · Welfare &amp; Wellbeing Officer (Executive Committee)</h3>
+          <ul>
+            <li>Partnered with the university welfare team on members’ mental and physical wellbeing.</li>
+            <li>Helped define club values and introduced an anonymous feedback system to improve communication and inclusion.</li>
+          </ul>
+        </div>
+        <div class="exp">
+          <p class="when">May 2020 – February 2021 · Bangkok, Thailand</p>
+          <h3>Sugar Sugar Bakery · Co-founder and Marketing Director</h3>
+          <ul>
+            <li>Drove the brand’s growth through digital platforms, crafting engaging content that showcased our products and connected with our audience.</li>
+            <li>Oversaw production and made the products myself; donated part of our profits to charity.</li>
+          </ul>
+        </div>
+        <div class="exp">
+          <p class="when">July – September 2021; December 2021 – January 2022 · Bangkok, Thailand</p>
+          <h3>Golden Horse Riding Club · Volunteer Assistance Coach</h3>
+          <ul>
+            <li>Led riding lessons for children, including those with disabilities, developing adaptability and the ability to tailor instruction to different needs, fostering confidence and inclusivity.</li>
+          </ul>
+        </div>
+        <div class="exp">
+          <p class="when">June – September 2023; December 2024 – January 2025 · Khon Kaen, Thailand</p>
+          <h3>Monkey Coffee · Front-of-House Staff</h3>
+          <ul>
+            <li>Delivered fast, accurate customer service and payments in a busy independent cafe, building repeat custom.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <h2 class="section-title">Skills &amp; Interests</h2>
+      <div class="skills">
+        <div class="skill">
+          <h3>Technical</h3>
+          <ul class="tags">
+            <li>Excel</li><li>PowerPoint</li><li>Word</li><li>Python</li><li>SPSS</li><li>Tableau</li><li>Qualtrics</li>
+          </ul>
+          <p style="margin-top: 14px;">AI tools (e.g. Claude, ChatGPT, Microsoft Copilot) for research and analysis.</p>
+        </div>
+        <div class="skill">
+          <h3>Sport</h3>
+          <p>BUCS Lacrosse and Netball at Newcastle; School 1st Team Netball Captain.</p>
+          <p>Finalist in Thailand Pony Dressage Championship 2018, after 10+ years of competitive dressage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="chart">
+    <div class="wrap">
+      <h2 class="section-title">Chart</h2>
+      <figure>
+        <img class="chart" src="images/chart1.png" alt="Chart: [PLACEHOLDER: describe what the chart shows]">
+        <figcaption><span class="placeholder">[PLACEHOLDER: chart title and caption]</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap contact">
+      <h2>Let’s talk.</h2>
+      <div class="contact-links">
+        <a href="mailto:nayamak05@gmail.com">nayamak05@gmail.com</a>
+        <span>LinkedIn: <span class="placeholder">[PLACEHOLDER: link from links.txt]</span></span>
+        <span>Other links: <span class="placeholder">[PLACEHOLDER: from links.txt]</span></span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>© 2026 Nayama Kongamnuaysuk</footer>
+
+<script>
+(function () {
+  // Light / dark mode (remembered in this browser when possible)
+  var root = document.documentElement;
+  var themeBtn = document.getElementById('themeBtn');
+  var themeLabel = document.getElementById('themeLabel');
+  function setTheme(dark) {
+    if (dark) { root.setAttribute('data-theme', 'dark'); } else { root.removeAttribute('data-theme'); }
+    themeBtn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+    themeLabel.textContent = dark ? 'Light' : 'Dark';
+  }
+  var saved = null;
+  try { saved = localStorage.getItem('theme'); } catch (e) {}
+  setTheme(saved === 'dark');
+  themeBtn.addEventListener('click', function () {
+    var dark = root.getAttribute('data-theme') !== 'dark';
+    setTheme(dark);
+    try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
+  });
+
+  // Ask-me flip cards
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.qcard'));
+  var progress = document.getElementById('askProgress');
+  var revealAll = document.getElementById('revealAll');
+  function update() {
+    var open = cards.filter(function (c) { return c.getAttribute('aria-pressed') === 'true'; }).length;
+    progress.textContent = open + ' of ' + cards.length + ' revealed.';
+    revealAll.textContent = open === cards.length ? 'Hide all answers' : 'Reveal all answers';
+  }
+  cards.forEach(function (card) {
+    card.addEventListener('click', function () {
+      card.setAttribute('aria-pressed', card.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+      update();
+    });
+  });
+  revealAll.addEventListener('click', function () {
+    var allOpen = cards.every(function (c) { return c.getAttribute('aria-pressed') === 'true'; });
+    cards.forEach(function (c) { c.setAttribute('aria-pressed', allOpen ? 'false' : 'true'); });
+    update();
+  });
+  update();
+
+  // Project slider
+  var slides = Array.prototype.slice.call(document.querySelectorAll('#slides .slide'));
+  var dots = Array.prototype.slice.call(document.querySelectorAll('#dots .dot'));
+  var pos = document.getElementById('slidePos');
+  var current = 0;
+  function show(i) {
+    current = (i + slides.length) % slides.length;
+    slides.forEach(function (s, k) { s.hidden = k !== current; });
+    dots.forEach(function (d, k) { d.setAttribute('aria-current', k === current ? 'true' : 'false'); });
+    pos.textContent = (current + 1) + ' / ' + slides.length;
+  }
+  document.getElementById('prevBtn').addEventListener('click', function () { show(current - 1); });
+  document.getElementById('nextBtn').addEventListener('click', function () { show(current + 1); });
+  dots.forEach(function (d, k) { d.addEventListener('click', function () { show(k); }); });
+  document.getElementById('slides').addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') { show(current - 1); }
+    if (e.key === 'ArrowRight') { show(current + 1); }
+  });
+})();
+</script>
+
+</body>
+</html>
